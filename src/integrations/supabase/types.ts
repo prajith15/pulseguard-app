@@ -14,35 +14,155 @@ export type Database = {
   }
   public: {
     Tables: {
-      users: {
+      attendance: {
+        Row: {
+          check_in: string | null
+          check_out: string | null
+          created_at: string | null
+          date: string
+          id: string
+          status: Database["public"]["Enums"]["attendance_status"] | null
+          total_hours: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          check_in?: string | null
+          check_out?: string | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          status?: Database["public"]["Enums"]["attendance_status"] | null
+          total_hours?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          check_in?: string | null
+          check_out?: string | null
+          created_at?: string | null
+          date?: string
+          id?: string
+          status?: Database["public"]["Enums"]["attendance_status"] | null
+          total_hours?: number | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      company_policies: {
+        Row: {
+          created_at: string | null
+          grace_time_minutes: number | null
+          id: string
+          late_mark_after_minutes: number | null
+          office_end_time: string | null
+          office_start_time: string | null
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          grace_time_minutes?: number | null
+          id?: string
+          late_mark_after_minutes?: number | null
+          office_end_time?: string | null
+          office_start_time?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          grace_time_minutes?: number | null
+          id?: string
+          late_mark_after_minutes?: number | null
+          office_end_time?: string | null
+          office_start_time?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      leave_requests: {
+        Row: {
+          approved_by: string | null
+          created_at: string | null
+          end_date: string
+          id: string
+          leave_type: Database["public"]["Enums"]["leave_type"]
+          reason: string
+          remarks: string | null
+          start_date: string
+          status: Database["public"]["Enums"]["leave_status"] | null
+          total_days: number | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          approved_by?: string | null
+          created_at?: string | null
+          end_date: string
+          id?: string
+          leave_type: Database["public"]["Enums"]["leave_type"]
+          reason: string
+          remarks?: string | null
+          start_date: string
+          status?: Database["public"]["Enums"]["leave_status"] | null
+          total_days?: number | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          approved_by?: string | null
+          created_at?: string | null
+          end_date?: string
+          id?: string
+          leave_type?: Database["public"]["Enums"]["leave_type"]
+          reason?: string
+          remarks?: string | null
+          start_date?: string
+          status?: Database["public"]["Enums"]["leave_status"] | null
+          total_days?: number | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
         Row: {
           created_at: string | null
           department: string | null
           email: string
+          hire_date: string | null
+          id: string
           name: string
-          password: string
-          role: string
+          role: Database["public"]["Enums"]["user_role"]
           status: string | null
+          updated_at: string | null
           user_id: string
         }
         Insert: {
           created_at?: string | null
           department?: string | null
           email: string
+          hire_date?: string | null
+          id?: string
           name: string
-          password: string
-          role: string
+          role?: Database["public"]["Enums"]["user_role"]
           status?: string | null
-          user_id?: string
+          updated_at?: string | null
+          user_id: string
         }
         Update: {
           created_at?: string | null
           department?: string | null
           email?: string
+          hire_date?: string | null
+          id?: string
           name?: string
-          password?: string
-          role?: string
+          role?: Database["public"]["Enums"]["user_role"]
           status?: string | null
+          updated_at?: string | null
           user_id?: string
         }
         Relationships: []
@@ -55,7 +175,10 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      attendance_status: "present" | "late" | "absent"
+      leave_status: "pending" | "approved" | "rejected"
+      leave_type: "casual" | "sick" | "earned"
+      user_role: "admin" | "hr" | "employee"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -182,6 +305,11 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      attendance_status: ["present", "late", "absent"],
+      leave_status: ["pending", "approved", "rejected"],
+      leave_type: ["casual", "sick", "earned"],
+      user_role: ["admin", "hr", "employee"],
+    },
   },
 } as const
